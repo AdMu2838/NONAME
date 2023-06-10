@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { DashboardService } from '../services/dashboard.service';
 
 @Component({
   selector: 'app-home',
@@ -9,5 +10,9 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule],
 })
 export class HomePage {
-  constructor() {}
+  constructor(private dashboardService : DashboardService) {}
+
+  consultaEstadoBaseDatos(){
+    alert(this.dashboardService.consultaBaseDatos());
+  }
 }
