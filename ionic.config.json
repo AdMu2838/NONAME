@@ -1,7 +1,8 @@
 {
-  "name": "proyecto-noname",
+  "name": "NONAME",
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular-standalone"
+  "type": "angular",
+  "id": "78499a50"
 }
