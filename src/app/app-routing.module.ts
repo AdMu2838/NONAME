@@ -10,7 +10,12 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: 'services',
+    loadChildren: () => import('./views/services/services.module').then( m => m.ServicesPageModule)
   }
+
 
 ];
 @NgModule({

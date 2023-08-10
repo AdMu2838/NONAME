@@ -18,7 +18,16 @@ export class FirebaseService {
       .collection(environment.collecion_test)
       .snapshotChanges()
       .pipe(take(1))
-      .toPromise()
+      .toPromise();
+  }
+
+  getCollectionData(collectionName: string){
+    return this.angularFirestore.collection(collectionName).valueChanges();
+  }
+
+  createDocument(collection: string, datos: any){
+    const refCollection =  this.angularFirestore.collection(collection);
+    return refCollection.add(datos);
   }
 }
 
