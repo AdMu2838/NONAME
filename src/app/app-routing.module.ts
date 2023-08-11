@@ -14,7 +14,12 @@ const routes: Routes = [
   {
     path: 'services',
     loadChildren: () => import('./views/services/services.module').then( m => m.ServicesPageModule)
+  },
+  {
+    path: 'create-service',
+    loadChildren: () => import('./views/create-service/create-service.module').then( m => m.CreateServicePageModule)
   }
+
 
 
 ];
