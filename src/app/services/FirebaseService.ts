@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AngularFirestore, DocumentChangeAction } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -22,12 +22,22 @@ export class FirebaseService {
   }
 
   getCollectionData(collectionName: string){
-    return this.angularFirestore.collection(collectionName).valueChanges();
+    return this.angularFirestore.collection(collectionName).snapshotChanges();
   }
 
   createDocument(collection: string, datos: any){
     const refCollection =  this.angularFirestore.collection(collection);
     return refCollection.add(datos);
+  }
+
+  updateDocument(collection: string,id: string, datos: any): Promise<void>{
+    const refCollection = this.angularFirestore.collection(collection).doc(id);
+    return refCollection.update(datos);
+  }
+
+  documentById(collection: string,id: any): Observable<any>{
+    const refCollection = this.angularFirestore.collection(collection).doc(id);
+    return refCollection.valueChanges();
   }
 }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { FirebaseService } from 'src/app/services/FirebaseService';
 @Component({
   selector: 'app-create-service',
@@ -13,15 +13,18 @@ export class CreateServicePage implements OnInit {
     urlLogo:'',
   };
   constructor(private firebaseService: FirebaseService,
-    private toastController: ToastController) { }
+    private toastController: ToastController,
+    private navCtrl: NavController) { }
 
   createService(){
-    if(this.newService.nombre && this.newService.capacidad
-       && this.newService.urlLogo!=null){
+    if(this.newService.nombre.trim()!=='' && this.newService.capacidad!==null
+       && this.newService.urlLogo.trim()!==''){
+
       this.firebaseService.createDocument('Servicio',this.newService).then(()=>{
         console.log('Documento creado exitosamente');
         this.presentToast('Servicio Agregado');
         this.cleanForm();
+        this.navCtrl.navigateForward('/services');
       }).catch((error)=>{
         console.error('Error al crear el documento', error);
       });
