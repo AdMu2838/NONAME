@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/services"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Nombre del servicio</ion-label>
+      <ion-input [(ngModel)]="serviceEdit.nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Capacidad</ion-label>
+      <ion-input type="number" [(ngModel)]="serviceEdit.capacidad"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Url del Logo</ion-label>
+      <ion-input [(ngModel)]="serviceEdit.urlLogo"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" color="primary" (click)="updateService()">Guardar Cambios</ion-button>
+</ion-content>
